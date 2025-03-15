@@ -104,11 +104,13 @@ def go(args):
     #X_val[object_cols] = X_val[object_cols].astype(str)
 
     # Then call the infer_signature function using the str X_val.
-    signature = infer_signature(X_val[processed_features], y_pred)
+    signature = infer_signature(X_val, y_pred)
+
     mlflow.sklearn.save_model(
         sk_pipe,
         export_path,
         signature=signature,
+        serialization_format=mlflow.sklearn.SERIALIZATION_FORMAT_CLOUDPICKLE,
         input_example=X_val.iloc[:5]
     )
 
