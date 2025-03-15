@@ -1,5 +1,9 @@
+"""
+THis is the main script that runs the entire pipeline.
+Authur: Emmanuel Sakala
+Date: 15/03/2025
+"""
 import json
-
 import mlflow
 import tempfile
 import os
