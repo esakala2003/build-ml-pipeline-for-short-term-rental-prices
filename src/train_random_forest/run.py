@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 """
 This script trains a Random Forest
+Authur: Emmanuel Sakala
+Date: 15/03/2025
 """
 import argparse
 import logging
 import os
 import shutil
 import matplotlib.pyplot as plt
-
 import mlflow
 import json
-
 import pandas as pd
 import numpy as np
 from sklearn.compose import ColumnTransformer
@@ -106,7 +106,8 @@ def go(args):
     # Then call the infer_signature function using the str X_val.
     signature = infer_signature(X_val, y_pred)
     mlflow.sklearn.save_model(
-        rf_pipeline,export_path,
+        sk_pipe,
+        export_path,
         signature=signature,
         input_example=X_val.iloc[:5]
     )
@@ -116,13 +117,16 @@ def go(args):
     # type, provide a description and add rf_config as metadata. Then, use the .add_dir method of the artifact instance
     # you just created to add the "random_forest_dir" directory to the artifact, and finally use
     # run.log_artifact to log the artifact to the run
+    logger.info("Uploading model artifact")
     artifact = wandb.Artifact(
-        args.output_artifact,
+        name=args.output_artifact,
         type="model_export",
         description="Trained pipeline artifact",
         metadata=rf_config
     )
     artifact.add_dir(export_path)
+
+    # Log artifact
     run.log_artifact(artifact)
 
     # Plot feature importance
