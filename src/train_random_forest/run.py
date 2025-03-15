@@ -98,13 +98,13 @@ def go(args):
 
      #Code extracted from https://knowledge.udacity.com/questions/979798 solving the infer_signature error
     # Identifiy the columns with data type (object)
-    object_cols = X_val.select_dtyes(include=['object']).columns.tolist()
+    #object_cols = X_val.select_dtyes(include=['object']).columns.tolist()
 
     # Convert the data type of object to string
-    X_val[object_cols] = X_val[object_cols].astype(str)
+    #X_val[object_cols] = X_val[object_cols].astype(str)
 
     # Then call the infer_signature function using the str X_val.
-    signature = infer_signature(X_val, y_pred)
+    signature = infer_signature(X_val[processed_features], y_pred)
     mlflow.sklearn.save_model(
         sk_pipe,
         export_path,
