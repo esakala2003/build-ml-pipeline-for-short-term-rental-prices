@@ -1,9 +1,15 @@
+"""
+Scipt to test the data before training.
+"""
 import pandas as pd
 import numpy as np
 import scipy.stats
 
 
 def test_column_names(data):
+    """
+    Function to test column names.
+    """
 
     expected_colums = [
         "id",
@@ -31,6 +37,9 @@ def test_column_names(data):
 
 
 def test_neighborhood_names(data):
+    """
+    Function to tes neighborhood names.
+    """
 
     known_names = ["Bronx", "Brooklyn", "Manhattan", "Queens", "Staten Island"]
 

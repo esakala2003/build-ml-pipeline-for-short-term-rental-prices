@@ -14,6 +14,9 @@ logger = logging.getLogger()
 
 
 def go(args):
+    """
+    Function to do basic cleaning.
+    """
 
     run = wandb.init(job_type="basic_cleaning")
     run.config.update(args)

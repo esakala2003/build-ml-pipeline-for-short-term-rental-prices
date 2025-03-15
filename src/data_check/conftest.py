@@ -1,3 +1,6 @@
+"""
+Script to run a conf test.
+"""
 import pytest
 import pandas as pd
 import wandb
